@@ -1,3 +1,58 @@
 body {
     text-align: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+header h1 {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+header h3 {
+    margin-top: 0;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+table {
+  border: 3px solid black;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  max-height: 985px; 
+}
+
+td {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  height: 171px;
+  width: 101px;
+}
+
+.rmiddle.middle.grass {
+    height: 130px;
+}
+
+.grass {
+    background-image: url("../images/grass-block.png");
+}
+
+.stone {
+    background-image: url("../images/stone-block.png");
+}
+
+.water {
+    background-image: url("../images/water-block.png");
 }
