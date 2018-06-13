@@ -1,13 +1,26 @@
 // Enemies our player must avoid
-var Enemy = function(x, y, speed) {
+var Enemy = function(allowedY) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
-    this.x = x;
-    this.y = y;
-    this.speed = speed;
+    this.x = -110; //creates enemy off screen
+
+    //Place enemy in 1 of 3 rows on game board
+    const createY = Math.floor(Math.random() * 3);
+
+    if (createY === 0) {
+        this.y = allowedY[0];
+    }
+    else if (createY === 1) {
+        this.y = allowedY[1];
+    }
+    else {
+        this.y = allowedY[2];
+    }
+
+    this.speed = Math.floor(Math.random() * 400) + 50; //random number b/w 50 and 400
     this.sprite = 'images/enemy-bug.png';
 };
 
@@ -33,7 +46,7 @@ Enemy.prototype.render = function() {
 const Player = function(x, y, speed) {
     this.x = x;
     this.y = y;
-    this.speed = speed;
+    //this.speed = speed;
     this.sprite = 'images/char-boy.png';
 };
 
@@ -52,7 +65,14 @@ Player.prototype.render = function() {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 const player = new Player(202, 404, 50);  //Start player in center of bottom row and set speed to 50
-const allEnemies = [new Enemy(-110, 225, 50)];
+
+// Array of allowed y coordinates
+const allowedY = [61, 143, 225];
+// Create initial group of enemies
+const allEnemies = [new Enemy(allowedY),
+                    new Enemy(allowedY),
+                    new Enemy(allowedY),
+                    new Enemy(allowedY)];
 
 
 
