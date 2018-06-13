@@ -7,13 +7,13 @@ var Enemy = function(allowedY) {
     // a helper we've provided to easily load images
     this.x = -110; //creates enemy off screen
 
-    //Place enemy in 1 of 3 rows on game board
-    const createY = Math.floor(Math.random() * 3);
+    // Randomly place enemy in 1 of 3 rows on game board
+    this.createY = Math.floor(Math.random() * 3);
 
-    if (createY === 0) {
+    if (this.createY === 0) {
         this.y = allowedY[0];
     }
-    else if (createY === 1) {
+    else if (this.createY === 1) {
         this.y = allowedY[1];
     }
     else {
@@ -31,6 +31,25 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x += this.speed*dt;
+
+    // Reset enemy if reaches end of game board
+    if (this.x > 505) {
+        this.x = -110;
+
+        this.createY = Math.floor(Math.random() * 3);
+
+        if (this.createY === 0) {
+            this.y = allowedY[0];
+        }
+        else if (this.createY === 1) {
+            this.y = allowedY[1];
+        }
+        else {
+            this.y = allowedY[2];
+        }
+
+        this.speed = Math.floor(Math.random() * 400) + 50;
+    }
     
 
 };
@@ -46,7 +65,7 @@ Enemy.prototype.render = function() {
 const Player = function(x, y, speed) {
     this.x = x;
     this.y = y;
-    //this.speed = speed;
+    this.speed = speed;
     this.sprite = 'images/char-boy.png';
 };
 
@@ -59,13 +78,8 @@ Player.prototype.render = function() {
 };
 
 
-
-
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
-const player = new Player(202, 389, 50);  //Start player in center of bottom row and set speed to 50
-
 // Array of allowed y coordinates
 const allowedY = [61, 143, 225];
 // Create initial group of enemies
@@ -73,6 +87,11 @@ const allEnemies = [new Enemy(allowedY),
                     new Enemy(allowedY),
                     new Enemy(allowedY),
                     new Enemy(allowedY)];
+
+// Place the player object in a variable called player
+const player = new Player(202, 389, 50);  //Player initial start point
+
+
 
 
 
