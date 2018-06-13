@@ -77,6 +77,32 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+Player.prototype.handleInput = function(keyCode) {
+    console.log(keyCode);
+
+    if (keyCode === 'up') {
+        if (this.y !== -21) {
+            this.y -= this.speed;
+        }       
+    }
+    else if (keyCode === 'down') {
+        if (this.y !== 389) {
+            this.y += this.speed;
+        }        
+    }
+    else if (keyCode === 'left') {
+        if (this.x !== 0) {
+            this.x -= 101;
+        }
+    }
+    else {
+        if (this.x !== 404) {
+            this.x += 101;
+        }
+        
+    }
+}
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -89,10 +115,7 @@ const allEnemies = [new Enemy(allowedY),
                     new Enemy(allowedY)];
 
 // Place the player object in a variable called player
-const player = new Player(202, 389, 50);  //Player initial start point
-
-
-
+const player = new Player(202, 389, 82);  //Player initial start point
 
 
 
@@ -105,6 +128,6 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-
+    
     player.handleInput(allowedKeys[e.keyCode]);
 });
