@@ -17,6 +17,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    this.x += this.speed*dt;
     
 
 };
@@ -37,8 +38,7 @@ const Player = function(x, y, speed) {
 };
 
 Player.prototype.update = function(dt) {
-
-
+    
 };
 
 Player.prototype.render = function() {
@@ -51,8 +51,8 @@ Player.prototype.render = function() {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-const player = new Player(202, 404, 0);  //Start player in center of bottom row
-const allEnemies = [new Enemy(100, 200, 50)];
+const player = new Player(202, 404, 50);  //Start player in center of bottom row and set speed to 50
+const allEnemies = [new Enemy(-110, 225, 50)];
 
 
 
