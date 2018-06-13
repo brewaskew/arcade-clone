@@ -64,7 +64,7 @@ Player.prototype.render = function() {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-const player = new Player(202, 404, 50);  //Start player in center of bottom row and set speed to 50
+const player = new Player(202, 389, 50);  //Start player in center of bottom row and set speed to 50
 
 // Array of allowed y coordinates
 const allowedY = [61, 143, 225];
