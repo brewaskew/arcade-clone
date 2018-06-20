@@ -13,7 +13,39 @@
  * writing app.js a little simpler to work with.
  */
 
-var Engine = (function(global) {
+
+
+/*const content = document.querySelector(".content");
+const userPlayer = document.querySelector(".player");
+const closeButton = document.querySelector(".close-button"); */
+// let playerChoice = "";
+/* const replay = document.querySelector(".replay");
+let finalScore = 0;
+let finalLevel = 1; */
+/* const modalPlayer = document.querySelector(".modal-player");
+const modalEnd = document.querySelector(".modal-end");
+
+function toggleModal(modal) {
+    if (modal === modalPlayer) {
+        modalPlayer.classList.toggle("show-modal");
+        modalPlayer.addEventListener('click', function (e) {
+            if (e.target.className === 'players') {
+                playerChoice = e.target.src;
+                //modalPlayer.classList.toggle("show-modal");
+            }
+        });
+    }
+    else {
+        modalEnd.classList.toggle("show-modal");
+    }
+
+} */
+
+//toggleModal(modalPlayer);
+
+
+
+var Engine = (function (global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
      * set the canvas elements height/width and add it to the DOM.
@@ -32,6 +64,8 @@ var Engine = (function(global) {
      * and handles properly calling the update and render methods.
      */
     function main() {
+
+
         /* Get our time delta information which is required if your game
          * requires smooth animation. Because everyone's computer processes
          * instructions at different speeds we need a constant value that
@@ -90,7 +124,7 @@ var Engine = (function(global) {
      * render methods.
      */
     function updateEntities(dt) {
-        allEnemies.forEach(function(enemy) {
+        allEnemies.forEach(function (enemy) {
             enemy.update(dt);
         });
         player.update();
@@ -107,19 +141,19 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
-                'images/water-block.png',   // Top row is water
-                'images/stone-block.png',   // Row 1 of 3 of stone
-                'images/stone-block.png',   // Row 2 of 3 of stone
-                'images/stone-block.png',   // Row 3 of 3 of stone
-                'images/grass-block.png',   // Row 1 of 2 of grass
-                'images/grass-block.png'    // Row 2 of 2 of grass
-            ],
+            'images/water-block.png',   // Top row is water
+            'images/stone-block.png',   // Row 1 of 3 of stone
+            'images/stone-block.png',   // Row 2 of 3 of stone
+            'images/stone-block.png',   // Row 3 of 3 of stone
+            'images/grass-block.png',   // Row 1 of 2 of grass
+            'images/grass-block.png'    // Row 2 of 2 of grass
+        ],
             numRows = 6,
             numCols = 5,
             row, col;
-        
+
         // Before drawing, clear existing canvas
-        ctx.clearRect(0,0,canvas.width,canvas.height)
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
 
         /* Loop through the number of rows and columns we've defined above
          * and, using the rowImages array, draw the correct image for that
@@ -149,7 +183,7 @@ var Engine = (function(global) {
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
-        allEnemies.forEach(function(enemy) {
+        allEnemies.forEach(function (enemy) {
             enemy.render();
         });
 
