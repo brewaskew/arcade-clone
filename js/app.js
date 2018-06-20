@@ -54,14 +54,14 @@ Enemy.prototype.update = function (dt) {
     // 2D Collision Detection Formula credited to Mozilla Developer Network (MDN)
     // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
     
-    if (this.x < player.x + 101 &&
-        this.x + 101 > player.x &&
-        this.y < player.y + 171 &&
-        171 + this.y > player.y) {
-         // collision detected!
-         player.x = 202;
-         player.y = 389;
-     }
+    if (player.y === this.y) {
+        if (this.x < player.x + 70 &&
+            this.x + 70 > player.x) {
+             player.x = 202;
+             player.y = 389;
+         }
+    }
+    
 
 
 };
