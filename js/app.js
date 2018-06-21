@@ -78,7 +78,7 @@ const Player = function (x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
-    this.sprite = 'images/char-boy.png';
+    this.sprite = 'images/char-princess-girl.png';
 };
 
 Player.prototype.update = function () {
