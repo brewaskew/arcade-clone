@@ -18,7 +18,7 @@ h4 {
 
 img {
     display: inline-block;
-    margin: 20px;
+    margin: 40px;
 }
 
 .players {
@@ -47,7 +47,8 @@ img {
     color: #07078b;
     text-align: center;
     padding: 1rem 1.5rem;
-    width: 25rem;
+    height: 606px;
+    width: 505px;
     border-radius: 0.5rem;
 }
 

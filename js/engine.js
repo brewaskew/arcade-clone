@@ -43,8 +43,6 @@ function toggleModal(modal) {
 
 //toggleModal(modalPlayer);
 
-
-
 var Engine = (function (global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
@@ -64,7 +62,7 @@ var Engine = (function (global) {
      * and handles properly calling the update and render methods.
      */
     function main() {
-
+        console.log("main char = " + character);
 
         /* Get our time delta information which is required if your game
          * requires smooth animation. Because everyone's computer processes
@@ -195,7 +193,27 @@ var Engine = (function (global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
+        //const playerModal = document.querySelector(".modal-player");
+        //let playerChoice = "";
+        
+       // toggleModal(playerModal);
+           
         // noop
+        /* playerModal.addEventListener('click', function (e) {
+            if (e.target.className === 'players') {
+                console.log(e.target);
+                /* if (e.target.alt === "Princess character") {
+                    character = 'images/princess-girl.png';
+                } */
+                //character = e.target.src;
+               /*  console.log("engine char =" + character);
+                toggleModal(playerModal);
+                //player = new Player(202, 389, 82);
+                main();
+            }
+        }); */
+
+        
     }
 
     /* Go ahead and load all of the images we know we're going to need to

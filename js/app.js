@@ -1,3 +1,18 @@
+//const playerModal = document.querySelector(".modal-player")
+let character = "images/princess-girl.png";
+//console.log("app.js char = " + character);
+/* playerModal.addEventListener('click', function (e) {
+    if (e.target.className === 'players') {
+        character = e.target.src;
+        console.log(character);
+        toggleModal(playerModal);
+    }
+}); */
+
+/* function toggleModal(modal) {
+    modal.classList.toggle("show-modal");
+} */
+
 // Enemies our player must avoid
 var Enemy = function (allowedY) {
     // Variables applied to each of our instances go here,
@@ -78,7 +93,7 @@ const Player = function (x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
-    this.sprite = 'images/char-boy.png';
+    this.sprite = character;
 };
 
 Player.prototype.update = function () {
@@ -86,6 +101,7 @@ Player.prototype.update = function () {
 };
 
 Player.prototype.render = function () {
+    console.log("render sprite = " + this.sprite);
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
@@ -133,7 +149,7 @@ const allEnemies = [new Enemy(allowedY),
                     new Enemy(allowedY)];
 
 // Place the player object in a variable called player
-const player = new Player(202, 389, 82);  //Player initial start point
+let player = new Player(202, 389, 82);  //Player initial start point
 
 
 
