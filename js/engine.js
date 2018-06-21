@@ -13,37 +13,7 @@
  * writing app.js a little simpler to work with.
  */
 
-
-
-/*const content = document.querySelector(".content");
-const userPlayer = document.querySelector(".player");
-const closeButton = document.querySelector(".close-button"); */
-// let playerChoice = "";
-/* const replay = document.querySelector(".replay");
-let finalScore = 0;
-let finalLevel = 1; */
-/* const modalPlayer = document.querySelector(".modal-player");
-const modalEnd = document.querySelector(".modal-end");
-
-function toggleModal(modal) {
-    if (modal === modalPlayer) {
-        modalPlayer.classList.toggle("show-modal");
-        modalPlayer.addEventListener('click', function (e) {
-            if (e.target.className === 'players') {
-                playerChoice = e.target.src;
-                //modalPlayer.classList.toggle("show-modal");
-            }
-        });
-    }
-    else {
-        modalEnd.classList.toggle("show-modal");
-    }
-
-} */
-
-//toggleModal(modalPlayer);
-
-var Engine = (function (global) {
+var Engine = (function(global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
      * set the canvas elements height/width and add it to the DOM.
@@ -63,7 +33,6 @@ var Engine = (function (global) {
      */
     function main() {
         console.log("main char = " + character);
-
         /* Get our time delta information which is required if your game
          * requires smooth animation. Because everyone's computer processes
          * instructions at different speeds we need a constant value that
@@ -97,7 +66,7 @@ var Engine = (function (global) {
     function init() {
         reset();
         lastTime = Date.now();
-        main();
+        //main();
     }
 
     /* This function is called by main (our game loop) and itself calls all
@@ -122,7 +91,7 @@ var Engine = (function (global) {
      * render methods.
      */
     function updateEntities(dt) {
-        allEnemies.forEach(function (enemy) {
+        allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
         player.update();
@@ -139,19 +108,19 @@ var Engine = (function (global) {
          * for that particular row of the game level.
          */
         var rowImages = [
-            'images/water-block.png',   // Top row is water
-            'images/stone-block.png',   // Row 1 of 3 of stone
-            'images/stone-block.png',   // Row 2 of 3 of stone
-            'images/stone-block.png',   // Row 3 of 3 of stone
-            'images/grass-block.png',   // Row 1 of 2 of grass
-            'images/grass-block.png'    // Row 2 of 2 of grass
-        ],
+                'images/water-block.png',   // Top row is water
+                'images/stone-block.png',   // Row 1 of 3 of stone
+                'images/stone-block.png',   // Row 2 of 3 of stone
+                'images/stone-block.png',   // Row 3 of 3 of stone
+                'images/grass-block.png',   // Row 1 of 2 of grass
+                'images/grass-block.png'    // Row 2 of 2 of grass
+            ],
             numRows = 6,
             numCols = 5,
             row, col;
-
+        
         // Before drawing, clear existing canvas
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.clearRect(0,0,canvas.width,canvas.height)
 
         /* Loop through the number of rows and columns we've defined above
          * and, using the rowImages array, draw the correct image for that
@@ -181,11 +150,15 @@ var Engine = (function (global) {
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
-        allEnemies.forEach(function (enemy) {
+        allEnemies.forEach(function(enemy) {
             enemy.render();
         });
 
         player.render();
+    }
+
+    function toggleModal(modal) {
+        modal.classList.toggle("show-modal");
     }
 
     /* This function does nothing but it could have been a good place to
@@ -193,27 +166,18 @@ var Engine = (function (global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        //const playerModal = document.querySelector(".modal-player");
-        //let playerChoice = "";
-        
-       // toggleModal(playerModal);
-           
-        // noop
-        /* playerModal.addEventListener('click', function (e) {
+        const playerModal = document.querySelector(".modal-player");
+        toggleModal(playerModal);
+        playerModal.addEventListener('click', function(e) {
             if (e.target.className === 'players') {
-                console.log(e.target);
-                /* if (e.target.alt === "Princess character") {
-                    character = 'images/princess-girl.png';
-                } */
-                //character = e.target.src;
-               /*  console.log("engine char =" + character);
+                character = e.target.src;
                 toggleModal(playerModal);
-                //player = new Player(202, 389, 82);
                 main();
             }
-        }); */
-
+        });
         
+
+        // noop
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -225,7 +189,11 @@ var Engine = (function (global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-princess-girl.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png'
     ]);
     Resources.onReady(init);
 
