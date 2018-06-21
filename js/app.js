@@ -113,10 +113,6 @@ Player.prototype.handleInput = function (keyCode) {
     }
 
     if (player.y === -21) {
-        if (keyCode === 'down' || keyCode === 'left' || keyCode === 'right') {
-            player.x += 0;
-            player.y += 0;
-        }
        const timeout = setTimeout(function () {
             player.x = 202;
             player.y = 389;
