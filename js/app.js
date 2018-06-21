@@ -126,6 +126,7 @@ Player.prototype.handleInput = function (keyCode) {
 // Place all enemy objects in an array called allEnemies
 // Array of allowed y coordinates
 const allowedY = [61, 143, 225];
+
 // Create initial random group of enemies
 const allEnemies = [new Enemy(allowedY),
                     new Enemy(allowedY),
