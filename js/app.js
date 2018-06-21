@@ -1,5 +1,3 @@
-let level = 1;
-
 // Enemies our player must avoid
 var Enemy = function (allowedY) {
     // Variables applied to each of our instances go here,
@@ -55,15 +53,15 @@ Enemy.prototype.update = function (dt) {
 
     // 2D Collision Detection Formula credited to Mozilla Developer Network (MDN)
     // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-
+    
     if (player.y === this.y) {
         if (this.x < player.x + 70 &&
             this.x + 70 > player.x) {
-            player.x = 202;
-            player.y = 389;
-        }
+             player.x = 202;
+             player.y = 389;
+         }
     }
-
+    
 
 
 };
@@ -84,7 +82,7 @@ const Player = function (x, y, speed) {
 };
 
 Player.prototype.update = function () {
-
+    
 };
 
 Player.prototype.render = function () {
@@ -96,7 +94,7 @@ Player.prototype.handleInput = function (keyCode) {
     if (keyCode === 'up') {
         if (this.y !== -21) {
             this.y -= this.speed;
-        }
+        }        
     }
     else if (keyCode === 'down') {
         if (this.y !== 389) {
@@ -115,27 +113,32 @@ Player.prototype.handleInput = function (keyCode) {
     }
 
     if (player.y === -21) {
-        const timeout = setTimeout(function () {
+        if (keyCode === 'down' || keyCode === 'left' || keyCode === 'right') {
+            player.x += 0;
+            player.y += 0;
+        }
+       const timeout = setTimeout(function () {
             player.x = 202;
             player.y = 389;
         }, 1000);
-
+        
     }
 }
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Array of allowed y coordinates
 const allowedY = [61, 143, 225];
 // Create initial random group of enemies
-
 const allEnemies = [new Enemy(allowedY),
-new Enemy(allowedY),
-new Enemy(allowedY),
-new Enemy(allowedY)];
+                    new Enemy(allowedY),
+                    new Enemy(allowedY),
+                    new Enemy(allowedY)];
 
 // Place the player object in a variable called player
 const player = new Player(202, 389, 82);  //Player initial start point
+
 
 
 // This listens for key presses and sends the keys to your
