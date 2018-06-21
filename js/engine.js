@@ -170,6 +170,7 @@ var Engine = (function(global) {
         toggleModal(playerModal);
         playerModal.addEventListener('click', function(e) {
             if (e.target.className === 'players') {
+                console.log(e);
                 character = e.target.src;
                 toggleModal(playerModal);
                 main();

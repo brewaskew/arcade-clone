@@ -63,9 +63,6 @@ Enemy.prototype.update = function (dt) {
              player.y = 389;
          }
     }
-    
-
-
 };
 
 // Draw the enemy on the screen, required method for game
