@@ -1,3 +1,9 @@
+let character = 'images/char-boy.png';
+
+function toggleModal(modal) {
+    modal.classList.toggle("show-modal");
+}
+
 // Enemies our player must avoid
 var Enemy = function (allowedY) {
     // Variables applied to each of our instances go here,
@@ -61,9 +67,6 @@ Enemy.prototype.update = function (dt) {
              player.y = 389;
          }
     }
-    
-
-
 };
 
 // Draw the enemy on the screen, required method for game
@@ -78,7 +81,13 @@ const Player = function (x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
+<<<<<<< HEAD
     this.sprite = 'images/char-princess-girl.png';
+||||||| merged common ancestors
+    this.sprite = 'images/char-boy.png';
+=======
+    this.sprite = character;
+>>>>>>> extras-2
 };
 
 Player.prototype.update = function () {

@@ -32,6 +32,7 @@ var Engine = (function(global) {
      * and handles properly calling the update and render methods.
      */
     function main() {
+        console.log("main char = " + character);
         /* Get our time delta information which is required if your game
          * requires smooth animation. Because everyone's computer processes
          * instructions at different speeds we need a constant value that
@@ -65,7 +66,6 @@ var Engine = (function(global) {
     function init() {
         reset();
         lastTime = Date.now();
-        main();
     }
 
     /* This function is called by main (our game loop) and itself calls all
@@ -156,11 +156,39 @@ var Engine = (function(global) {
         player.render();
     }
 
+    
+
     /* This function does nothing but it could have been a good place to
      * handle game reset states - maybe a new game menu or a game over screen
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
+        const playerModal = document.querySelector(".modal-player");
+        toggleModal(playerModal);
+        playerModal.addEventListener('click', function(e) {
+            if (e.target.className === 'players') {
+                console.log(e);
+                if (e.target.id === 'boy') {
+                    player.sprite = 'images/char-boy.png';
+                }
+                else if (e.target.id === 'cat') {
+                    player.sprite = 'images/char-cat-girl.png';
+                }
+                else if (e.target.id === 'horn') {
+                    player.sprite = 'images/char-horn-girl.png';
+                }
+                else if (e.target.id === 'pink') {
+                    player.sprite = 'images/char-pink-girl.png';
+                }
+                else if (e.target.id === 'princess') {
+                    player.sprite = 'images/char-princess-girl.png';
+                }
+                toggleModal(playerModal);
+                main();
+            }
+        });
+        
+
         // noop
     }
 
