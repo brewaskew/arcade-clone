@@ -1,5 +1,9 @@
 let character = 'images/char-boy.png';
 
+function toggleModal(modal) {
+    modal.classList.toggle("show-modal");
+}
+
 // Enemies our player must avoid
 var Enemy = function (allowedY) {
     // Variables applied to each of our instances go here,

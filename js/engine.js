@@ -172,8 +172,9 @@ var Engine = (function(global) {
             if (e.target.className === 'players') {
                 console.log(e);
                 character = e.target.src;
+                console.log(character);
                 toggleModal(playerModal);
-                main();
+                //main();
             }
         });
         
