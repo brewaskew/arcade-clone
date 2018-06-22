@@ -66,7 +66,6 @@ var Engine = (function(global) {
     function init() {
         reset();
         lastTime = Date.now();
-        //main();
     }
 
     /* This function is called by main (our game loop) and itself calls all
@@ -169,8 +168,21 @@ var Engine = (function(global) {
         playerModal.addEventListener('click', function(e) {
             if (e.target.className === 'players') {
                 console.log(e);
-                player.sprite = e.target.src;
-                console.log(player.sprite);
+                if (e.target.id === 'boy') {
+                    player.sprite = 'images/char-boy.png';
+                }
+                else if (e.target.id === 'cat') {
+                    player.sprite = 'images/char-cat-girl.png';
+                }
+                else if (e.target.id === 'horn') {
+                    player.sprite = 'images/char-horn-girl.png';
+                }
+                else if (e.target.id === 'pink') {
+                    player.sprite = 'images/char-pink-girl.png';
+                }
+                else if (e.target.id === 'princess') {
+                    player.sprite = 'images/char-princess-girl.png';
+                }
                 toggleModal(playerModal);
                 main();
             }
