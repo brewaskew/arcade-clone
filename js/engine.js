@@ -157,9 +157,7 @@ var Engine = (function(global) {
         player.render();
     }
 
-    function toggleModal(modal) {
-        modal.classList.toggle("show-modal");
-    }
+    
 
     /* This function does nothing but it could have been a good place to
      * handle game reset states - maybe a new game menu or a game over screen
@@ -171,10 +169,10 @@ var Engine = (function(global) {
         playerModal.addEventListener('click', function(e) {
             if (e.target.className === 'players') {
                 console.log(e);
-                character = e.target.src;
-                console.log(character);
+                player.sprite = e.target.src;
+                console.log(player.sprite);
                 toggleModal(playerModal);
-                //main();
+                main();
             }
         });
         
