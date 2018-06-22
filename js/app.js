@@ -81,13 +81,8 @@ const Player = function (x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
-<<<<<<< HEAD
-    this.sprite = 'images/char-princess-girl.png';
-||||||| merged common ancestors
-    this.sprite = 'images/char-boy.png';
-=======
     this.sprite = character;
->>>>>>> extras-2
+
 };
 
 Player.prototype.update = function () {
