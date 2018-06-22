@@ -81,7 +81,6 @@ const Player = function (x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
-    console.log(character);
     this.sprite = character;
 };
 
