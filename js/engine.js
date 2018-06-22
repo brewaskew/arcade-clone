@@ -32,7 +32,6 @@ var Engine = (function(global) {
      * and handles properly calling the update and render methods.
      */
     function main() {
-        console.log("main char = " + character);
         /* Get our time delta information which is required if your game
          * requires smooth animation. Because everyone's computer processes
          * instructions at different speeds we need a constant value that
@@ -167,7 +166,6 @@ var Engine = (function(global) {
         toggleModal(playerModal);
         playerModal.addEventListener('click', function(e) {
             if (e.target.className === 'players') {
-                console.log(e);
                 if (e.target.id === 'boy') {
                     player.sprite = 'images/char-boy.png';
                 }
