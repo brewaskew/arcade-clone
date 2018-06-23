@@ -56,6 +56,30 @@ img {
     margin-top: 25px;
 }
 
+.modal-level {
+    position: absolute;
+    width: 100%;
+    height: 75%;
+    background-color: rgba(87, 190, 238, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000; 
+}
+
+.modal-level-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(252, 235, 0);
+    color: #07078b;
+    text-align: center;
+    padding: 1rem 1.5rem;
+    height: 606px;
+    width: 606px;
+    border-radius: 0.5rem;
+}
+
 .modal-end {
     position: absolute;
     width: 100%;

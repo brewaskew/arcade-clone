@@ -116,12 +116,16 @@ Player.prototype.handleInput = function (keyCode) {
     }
 
     if (player.y === -21) {
-       const timeout = setTimeout(function () {
-            player.x = 202;
-            player.y = 389;
-        }, 1000);
-        
-    }
+        console.log(player.y);
+        const timeout = setTimeout(function () {
+            toggleModal(levelModal);
+             /* player.x = 202;
+             player.y = 389; */
+         }, 1500);
+         player.x = 202;
+         player.y = 389;
+         toggleModal(levelModal);
+     }
 }
 
 

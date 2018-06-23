@@ -163,6 +163,7 @@ var Engine = (function(global) {
      */
     function reset() {
         const playerModal = document.querySelector(".modal-player");
+        const levelModal = document.querySelector(".modal-level");
         toggleModal(playerModal);
         playerModal.addEventListener('click', function(e) {
             if (e.target.className === 'players') {
@@ -185,6 +186,18 @@ var Engine = (function(global) {
                 main();
             }
         });
+
+        if (player.y === -21) {
+            console.log(player.y);
+            const timeout = setTimeout(function () {
+                toggleModal(levelModal);
+                 /* player.x = 202;
+                 player.y = 389; */
+             }, 1500);
+             player.x = 202;
+             player.y = 389;
+             toggleModal(levelModal);
+         }
         
 
         // noop
