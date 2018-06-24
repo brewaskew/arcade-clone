@@ -2,7 +2,8 @@
 
 Arcade Clone is a game developed as part of the Grow with Google Front-End Nanodegree Program (FEND).  It is an exercise in using object oriented javascript techniques.
 
-The game is a recreation of the classic Frogger.  The user moves their character from the bottom of the board to the top of the board, while avoiding enemies.  Upon reaching the top of the board, the player resets and starts a new level of increased difficulty, until all three player lives are gone.
+The game is a recreation of the classic Frogger.  To begin the game, just load the web page: https://brewaskew.github.io/arcade-clone/
+To start playing, select your character form the provided options.  To move your character around the board, use the arrow keys on the keyboard.  The user moves their character from the bottom of the board to the top of the board, while avoiding enemies.  Upon reaching the top of the board, the player resets and starts a new level of increased difficulty (more enemies), until all three player lives are gone.
 
 # **Features**
 
