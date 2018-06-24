@@ -78,8 +78,19 @@ Enemy.prototype.update = function (dt) {
     if (player.y === this.y) {
         if (this.x < player.x + 70 &&
             this.x + 70 > player.x) {
-             player.x = 202;
-             player.y = 389;
+                playerLives -= 1;
+                if (playerLives === 2) {
+                    ReadyPlayerThree.style.visibility = "hidden";
+                }
+                else if (playerLives === 1) {
+                    ReadyPlayerTwo.style.visibility = "hidden"; 
+                }
+                else if (playerLives === 0) {
+                    ReadyPlayerOne.style.visibility = "hidden"; 
+                }
+
+                player.x = 202;
+                player.y = 389;
          }
     }
 };
