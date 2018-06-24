@@ -1,6 +1,9 @@
+//Variables for player character image, 'Lives' icons and Level counter
 let character = "";
 let level = 1;
 let playerLives = 3;
+
+//Variables for accessing modal boxes
 const levelModal = document.querySelector(".modal-level");
 const endModal = document.querySelector(".modal-end");
 const replay = document.querySelector(".replay");
@@ -10,13 +13,8 @@ const levelCount = document.querySelector(".level-count");
 const ReadyPlayerOne = document.getElementById("L1");
 const ReadyPlayerTwo = document.getElementById("L2");
 const ReadyPlayerThree = document.getElementById("L3");
-const playerLivesCounter = document.querySelectorAll(".player-lives-counter");
-/* for (let i=0; i<3; i++) {
-    let playerChar = document.createElement("img");
-    playerChar.setAttribute("src", character);
-    lives.appendChild(playerChar);
-} */
 
+//Show or hide modal boxes
 function toggleModal(modal) {
     modal.classList.toggle("show-modal");
 }
@@ -28,9 +26,11 @@ var Enemy = function (allowedY) {
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
+
     this.x = -110; //creates enemy off screen
 
-    // Randomly place enemy in 1 of 3 rows on game board
+    /* Randomly select the number 0, 1, or 2 and use it to access
+    ** row location value in the allowedY array*/
     this.createY = Math.floor(Math.random() * 3);
 
     if (this.createY === 0) {
@@ -43,7 +43,10 @@ var Enemy = function (allowedY) {
         this.y = allowedY[2];
     }
 
-    this.speed = Math.floor(Math.random() * 400) + 50; //random number b/w 50 and 400
+    //When creating enemy, give it an initial random speed b/w 50 and 400
+    this.speed = Math.floor(Math.random() * 400) + 50;
+
+    //enemy image file location
     this.sprite = 'images/enemy-bug.png';
 };
 
@@ -55,7 +58,8 @@ Enemy.prototype.update = function (dt) {
     // all computers.
     this.x += this.speed * dt;
 
-    // Reset enemy if reaches end of game board
+    /* If enemy reaches end of the game board, reset with a new
+    ** random position from allowedY array */
     if (this.x > 505) {
         this.x = -110;
 
@@ -74,30 +78,36 @@ Enemy.prototype.update = function (dt) {
         this.speed = Math.floor(Math.random() * 400) + 50;
     }
 
-    // 2D Collision Detection Formula credited to Mozilla Developer Network (MDN)
-    // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-    
+    /* 2D Collision Detection Formula credited to Mozilla Developer Network (MDN)
+    ** https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+    ** Check to see if an enemy touches the player.  If it does, reset player
+    ** to start position and remove a player's available life.  If after player life removed,
+    ** player lives=0, trigger end game modal box */
+
     if (player.y === this.y) {
         if (this.x < player.x + 70 &&
             this.x + 70 > player.x) {
-                playerLives -= 1;
-                if (playerLives === 2) {
-                    ReadyPlayerThree.style.visibility = "hidden";
-                }
-                else if (playerLives === 1) {
-                    ReadyPlayerTwo.style.visibility = "hidden"; 
-                }
-                else if (playerLives === 0) {
-                    ReadyPlayerOne.style.visibility = "hidden";
-                    replay.addEventListener("click", function() {
-                        location.reload();
-                    });
-                    toggleModal(endModal);
-                }
-
-                player.x = 202;
-                player.y = 389;
-         }
+            /* Remove a player life and hide furthest right visible "Lives" icon
+            ** on the scoreboard */
+            playerLives -= 1;
+            if (playerLives === 2) {
+                ReadyPlayerThree.style.visibility = "hidden";
+            }
+            else if (playerLives === 1) {
+                ReadyPlayerTwo.style.visibility = "hidden";
+            }
+            //Trigger end game modal box
+            else if (playerLives === 0) {
+                ReadyPlayerOne.style.visibility = "hidden";
+                replay.addEventListener("click", function () {
+                    location.reload();
+                });
+                toggleModal(endModal);
+            }
+            //reset player to start position
+            player.x = 202;
+            player.y = 389;
+        }
     }
 };
 
@@ -109,6 +119,8 @@ Enemy.prototype.render = function () {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
+
+// Player object
 const Player = function (x, y, speed) {
     this.x = x;
     this.y = y;
@@ -117,20 +129,28 @@ const Player = function (x, y, speed) {
 
 };
 
+/* Player update is a required function for the game engine however
+** my implication does not make use of it. */
 Player.prototype.update = function () {
-    
+
 };
 
+// Draws character image on the game board.
 Player.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+/* Captures user input from arrow keys and moves the character accordingly.
+** Also checks for illegal moves (ie: character can't move off screen).
+** If player reaches final row, "Next level" modal box is triggered, player
+** is reset to start position, level counter is increased on the scoreboard, 
+** and a new enemy is created. */
 Player.prototype.handleInput = function (keyCode) {
 
     if (keyCode === 'up') {
         if (this.y !== -21) {
             this.y -= this.speed;
-        }        
+        }
     }
     else if (keyCode === 'down') {
         if (this.y !== 389) {
@@ -153,28 +173,30 @@ Player.prototype.handleInput = function (keyCode) {
         levelContent.textContent = "Level " + level;
         const timeout = setTimeout(function () {
             toggleModal(levelModal);
-         }, 1500);
-         player.x = 202;
-         player.y = 389;
-         allEnemies.push(new Enemy(allowedY));
-         levelCount.textContent = level;
-         toggleModal(levelModal);
-     }
+        }, 1500);
+        player.x = 202;
+        player.y = 389;
+        allEnemies.push(new Enemy(allowedY));
+        levelCount.textContent = level;
+        toggleModal(levelModal);
+    }
 }
 
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-// Array of allowed y coordinates
+
+// Array of allowed y coordinates (ie: rock rows)
 const allowedY = [61, 143, 225];
 
-// Create initial random group of enemies
+/* Create initial random group of enemies, this will be added to
+** as player advances to each new level. */
 const allEnemies = [new Enemy(allowedY),
-                     new Enemy(allowedY),
-                    new Enemy(allowedY)];
+new Enemy(allowedY),
+new Enemy(allowedY)];
 
-// Place the player object in a variable called player
-const player = new Player(202, 389, 82);  //Player initial start point
+// Place the player object in a variable called player and place at start position.
+const player = new Player(202, 389, 82);
 
 
 

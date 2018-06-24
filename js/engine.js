@@ -13,7 +13,7 @@
  * writing app.js a little simpler to work with.
  */
 
-var Engine = (function(global) {
+var Engine = (function (global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
      * set the canvas elements height/width and add it to the DOM.
@@ -65,6 +65,9 @@ var Engine = (function(global) {
     function init() {
         reset();
         lastTime = Date.now();
+        /* This is where the main() function was initially called in the
+        ** provided start code.  Keeping it in place for any future editing. */
+        //main();  
     }
 
     /* This function is called by main (our game loop) and itself calls all
@@ -89,7 +92,7 @@ var Engine = (function(global) {
      * render methods.
      */
     function updateEntities(dt) {
-        allEnemies.forEach(function(enemy) {
+        allEnemies.forEach(function (enemy) {
             enemy.update(dt);
         });
         player.update();
@@ -106,19 +109,19 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
-                'images/water-block.png',   // Top row is water
-                'images/stone-block.png',   // Row 1 of 3 of stone
-                'images/stone-block.png',   // Row 2 of 3 of stone
-                'images/stone-block.png',   // Row 3 of 3 of stone
-                'images/grass-block.png',   // Row 1 of 2 of grass
-                'images/grass-block.png'    // Row 2 of 2 of grass
-            ],
+            'images/water-block.png',   // Top row is water
+            'images/stone-block.png',   // Row 1 of 3 of stone
+            'images/stone-block.png',   // Row 2 of 3 of stone
+            'images/stone-block.png',   // Row 3 of 3 of stone
+            'images/grass-block.png',   // Row 1 of 2 of grass
+            'images/grass-block.png'    // Row 2 of 2 of grass
+        ],
             numRows = 6,
             numCols = 5,
             row, col;
-        
+
         // Before drawing, clear existing canvas
-        ctx.clearRect(0,0,canvas.width,canvas.height)
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
 
         /* Loop through the number of rows and columns we've defined above
          * and, using the rowImages array, draw the correct image for that
@@ -148,24 +151,31 @@ var Engine = (function(global) {
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
-        allEnemies.forEach(function(enemy) {
+        allEnemies.forEach(function (enemy) {
             enemy.render();
         });
 
         player.render();
     }
 
-    
 
-    /* This function does nothing but it could have been a good place to
+
+    /* *****Initital comment for reset() as provided by starter code*****
+     * This function does nothing but it could have been a good place to
      * handle game reset states - maybe a new game menu or a game over screen
      * those sorts of things. It's only called once by the init() method.
      */
+
+    /* Shows character selection modal box at the beginning of the game.  On user
+    ** selection, modal box closes and game board, enemies, and characters are drawn on
+    ** the game board.  Scoreboard is set with player lives icons and level counter. */
     function reset() {
         const playerModal = document.querySelector(".modal-player");
-        
+        // Show character selection modal box
         toggleModal(playerModal);
-        playerModal.addEventListener('click', function(e) {
+        /* Listen for user click on a character icon and set it's source location
+        ** to the character variable and player.sprite variable */
+        playerModal.addEventListener('click', function (e) {
             if (e.target.className === 'players') {
                 if (e.target.id === 'boy') {
                     character = player.sprite = 'images/char-boy.png';
@@ -182,37 +192,32 @@ var Engine = (function(global) {
                 else if (e.target.id === 'princess') {
                     character = player.sprite = 'images/char-princess-girl.png';
                 }
+                // Hide character selection modal box after a character has been selected.
                 toggleModal(playerModal);
+                //Set scoreboard level counter to initial level of 1.
                 levelContent.textContent = "Level " + level;
                 levelCount.textContent = level;
-                const timeout = setTimeout(function () {                    
-                    toggleModal(levelModal);                    
+
+                /* Show level modal box and call main() function
+                ** to create game board */
+                const timeout = setTimeout(function () {
+                    toggleModal(levelModal);
                     main();
-                 }, 1500);
-                 toggleModal(levelModal);
-                 ReadyPlayerOne.src = character;
-                 ReadyPlayerOne.style.visibility = "visible";
-                 ReadyPlayerTwo.src = character;
-                 ReadyPlayerTwo.style.visibility = "visible";
-                 ReadyPlayerThree.src = character;
-                 ReadyPlayerThree.style.visibility = "visible";         
+                }, 1500);
+                // Hide level modal box after 1.5 seconds
+                toggleModal(levelModal);
+
+                /* Set each player lives icon's source location to player character's
+                ** source location, so player character image and lives icons match.
+                ** Set the lives icons to viisble. */
+                ReadyPlayerOne.src = character;
+                ReadyPlayerOne.style.visibility = "visible";
+                ReadyPlayerTwo.src = character;
+                ReadyPlayerTwo.style.visibility = "visible";
+                ReadyPlayerThree.src = character;
+                ReadyPlayerThree.style.visibility = "visible";
             }
         });
-
-        if (player.y === -21) {
-            console.log(player.y);
-            const timeout = setTimeout(function () {
-                toggleModal(levelModal);
-                 /* player.x = 202;
-                 player.y = 389; */
-             }, 1500);
-             player.x = 202;
-             player.y = 389;
-             toggleModal(levelModal);
-         }
-        
-
-        // noop
     }
 
     /* Go ahead and load all of the images we know we're going to need to
