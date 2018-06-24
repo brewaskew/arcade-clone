@@ -2,6 +2,8 @@ let character = "";
 let level = 1;
 let playerLives = 3;
 const levelModal = document.querySelector(".modal-level");
+const endModal = document.querySelector(".modal-end");
+const replay = document.querySelector(".replay");
 const levelContent = document.querySelector(".level");
 const lives = document.querySelector(".lives-count");
 const levelCount = document.querySelector(".level-count");
@@ -86,7 +88,11 @@ Enemy.prototype.update = function (dt) {
                     ReadyPlayerTwo.style.visibility = "hidden"; 
                 }
                 else if (playerLives === 0) {
-                    ReadyPlayerOne.style.visibility = "hidden"; 
+                    ReadyPlayerOne.style.visibility = "hidden";
+                    replay.addEventListener("click", function() {
+                        location.reload();
+                    });
+                    toggleModal(endModal);
                 }
 
                 player.x = 202;
