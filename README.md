@@ -34,10 +34,9 @@ In making this app, I wrote a bulk of the player and enemy object creation and f
 
 I also made use of, greatly or in full, the following:
 
-1. Implementation of the modal-box, from a previous Udacity project, which relied upon a modal-box example from SABE at: 
-2. For the implementation of the modal-box I relied heavily on an example from SABE at: https://sabe.io/tutorials/how-to-create-modal-popup-box and the book, "Javascript & Jquery - interactive front-end web development" by: Jon Duckett
-3. For collision detection, I used the Mozilla Developer Network (MDN) 2D Collision Formula at: https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection 
-4. I used a free for personal use font (Retro-Computer font) from: https://www.dafont.com/retro-computer.font
+1. Implementation of the modal-box, from a previous Udacity project, which relied upon a modal-box example from SABE at: https://sabe.io/tutorials/how-to-create-modal-popup-box and the book, "Javascript & Jquery - interactive front-end web development" by: Jon Duckett
+2. For collision detection, I used the Mozilla Developer Network (MDN) 2D Collision Formula at: https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection 
+3. I used a free for personal use font (Retro-Computer font) from: https://www.dafont.com/retro-computer.font
 
 ## Build & Theme
 The site is built using html5, css3, and javascript, using javascript objects.  The theme is a retro arcade game, namely Frogger.
