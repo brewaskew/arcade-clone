@@ -3,6 +3,10 @@
 	src: url('../fonts/Retro-Computer.ttf');
 }
 
+* {
+    border: solid 1px red;
+}
+
 body {
     text-align: center;
 }
@@ -21,9 +25,41 @@ img {
     margin: 40px;
 }
 
+.player-lives-counter {
+    height: 2%;
+    width: 2%;
+    margin: 0;
+    padding: 0;
+}
+
+#L1, #L2, #L3 {
+    visibility: visible;
+}
+
 .players {
     cursor: pointer;
 }
+
+/* header {
+    text-align: center;
+} */
+
+.scoreboard {
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: center;
+
+}
+
+.player-lives, .player-level {
+    display: inline;
+    width: 50%;
+}
+
+.player-level {
+    margin-left: 200px;
+}
+
 
 /*modal-box implementation with help from https://sabe.io/tutorials/how-to-create-modal-popup-box
 **and "Javascript and Jquery - interactive front-end web development" By: Jon Duckett */
@@ -75,8 +111,8 @@ img {
     color: #07078b;
     text-align: center;
     padding: 1rem 1.5rem;
-    height: 606px;
-    width: 606px;
+    height: 101px;
+    width: 303px;
     border-radius: 0.5rem;
 }
 

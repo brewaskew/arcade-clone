@@ -163,27 +163,36 @@ var Engine = (function(global) {
      */
     function reset() {
         const playerModal = document.querySelector(".modal-player");
-        const levelModal = document.querySelector(".modal-level");
+        
         toggleModal(playerModal);
         playerModal.addEventListener('click', function(e) {
             if (e.target.className === 'players') {
                 if (e.target.id === 'boy') {
-                    player.sprite = 'images/char-boy.png';
+                    character = player.sprite = 'images/char-boy.png';
                 }
                 else if (e.target.id === 'cat') {
-                    player.sprite = 'images/char-cat-girl.png';
+                    character = player.sprite = 'images/char-cat-girl.png';
                 }
                 else if (e.target.id === 'horn') {
-                    player.sprite = 'images/char-horn-girl.png';
+                    character = player.sprite = 'images/char-horn-girl.png';
                 }
                 else if (e.target.id === 'pink') {
-                    player.sprite = 'images/char-pink-girl.png';
+                    character = player.sprite = 'images/char-pink-girl.png';
                 }
                 else if (e.target.id === 'princess') {
-                    player.sprite = 'images/char-princess-girl.png';
+                    character = player.sprite = 'images/char-princess-girl.png';
                 }
                 toggleModal(playerModal);
-                main();
+                levelContent.textContent = "Level " + level;
+                levelCount.textContent = level;
+                const timeout = setTimeout(function () {                    
+                    toggleModal(levelModal);                    
+                    main();
+                 }, 1500);
+                 toggleModal(levelModal);
+                 ReadyPlayerOne.src = character;
+                 ReadyPlayerTwo.src = character;
+                 ReadyPlayerThree.src = character;            
             }
         });
 
