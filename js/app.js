@@ -1,4 +1,21 @@
-let character = 'images/char-boy.png';
+let character = "";
+let level = 1;
+let playerLives = 3;
+const levelModal = document.querySelector(".modal-level");
+const endModal = document.querySelector(".modal-end");
+const replay = document.querySelector(".replay");
+const levelContent = document.querySelector(".level");
+const lives = document.querySelector(".lives-count");
+const levelCount = document.querySelector(".level-count");
+const ReadyPlayerOne = document.getElementById("L1");
+const ReadyPlayerTwo = document.getElementById("L2");
+const ReadyPlayerThree = document.getElementById("L3");
+const playerLivesCounter = document.querySelectorAll(".player-lives-counter");
+/* for (let i=0; i<3; i++) {
+    let playerChar = document.createElement("img");
+    playerChar.setAttribute("src", character);
+    lives.appendChild(playerChar);
+} */
 
 function toggleModal(modal) {
     modal.classList.toggle("show-modal");
@@ -63,8 +80,23 @@ Enemy.prototype.update = function (dt) {
     if (player.y === this.y) {
         if (this.x < player.x + 70 &&
             this.x + 70 > player.x) {
-             player.x = 202;
-             player.y = 389;
+                playerLives -= 1;
+                if (playerLives === 2) {
+                    ReadyPlayerThree.style.visibility = "hidden";
+                }
+                else if (playerLives === 1) {
+                    ReadyPlayerTwo.style.visibility = "hidden"; 
+                }
+                else if (playerLives === 0) {
+                    ReadyPlayerOne.style.visibility = "hidden";
+                    replay.addEventListener("click", function() {
+                        location.reload();
+                    });
+                    toggleModal(endModal);
+                }
+
+                player.x = 202;
+                player.y = 389;
          }
     }
 };
@@ -117,12 +149,17 @@ Player.prototype.handleInput = function (keyCode) {
     }
 
     if (player.y === -21) {
-       const timeout = setTimeout(function () {
-            player.x = 202;
-            player.y = 389;
-        }, 1000);
-        
-    }
+        level += 1;
+        levelContent.textContent = "Level " + level;
+        const timeout = setTimeout(function () {
+            toggleModal(levelModal);
+         }, 1500);
+         player.x = 202;
+         player.y = 389;
+         allEnemies.push(new Enemy(allowedY));
+         levelCount.textContent = level;
+         toggleModal(levelModal);
+     }
 }
 
 
@@ -133,8 +170,7 @@ const allowedY = [61, 143, 225];
 
 // Create initial random group of enemies
 const allEnemies = [new Enemy(allowedY),
-                    new Enemy(allowedY),
-                    new Enemy(allowedY),
+                     new Enemy(allowedY),
                     new Enemy(allowedY)];
 
 // Place the player object in a variable called player
