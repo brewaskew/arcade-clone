@@ -3,9 +3,9 @@
 	src: url('../fonts/Retro-Computer.ttf');
 }
 
-* {
+/* * {
     border: solid 1px red;
-}
+} */
 
 body {
     text-align: center;
@@ -33,22 +33,17 @@ img {
 }
 
 #L1, #L2, #L3 {
-    visibility: visible;
+    visibility: hidden;
 }
 
 .players {
     cursor: pointer;
 }
 
-/* header {
-    text-align: center;
-} */
-
 .scoreboard {
     width: 100%;
     margin-bottom: 10px;
     text-align: center;
-
 }
 
 .player-lives, .player-level {

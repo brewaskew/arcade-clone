@@ -191,8 +191,11 @@ var Engine = (function(global) {
                  }, 1500);
                  toggleModal(levelModal);
                  ReadyPlayerOne.src = character;
+                 ReadyPlayerOne.style.visibility = "visible";
                  ReadyPlayerTwo.src = character;
-                 ReadyPlayerThree.src = character;            
+                 ReadyPlayerTwo.style.visibility = "visible";
+                 ReadyPlayerThree.src = character;
+                 ReadyPlayerThree.style.visibility = "visible";         
             }
         });
 
