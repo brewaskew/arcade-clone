@@ -26,6 +26,9 @@ The app consists of:
 6. Retro-Computer font
 7. Images folder containing all character images and game board images.
 
+To run the game, you can either go to https://brewaskew.github.io/arcade-clone/ or
+download/clone the repository from https://github.com/brewaskew/arcade-clone and then open index.html on your local machine.  Enjoy!
+
 ## Dependencies
 In making this app, I wrote a bulk of the player and enemy object creation and functionality.  Udacity provided a large amount of code, including 
 1. engine.js
