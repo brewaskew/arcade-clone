@@ -18,6 +18,18 @@ function toggleModal(modal) {
     modal.classList.toggle("show-modal");
 }
 
+//Parent constructor for enemies and player
+const GameCharacter = function() {
+    
+};
+
+/* Common function for both Enemy and Player
+** Draws character image on the game board. */
+
+GameCharacter.prototype.render = function () {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
 // Enemies our player must avoid
 var Enemy = function (allowedY) {
     // Variables applied to each of our instances go here,
@@ -48,6 +60,9 @@ var Enemy = function (allowedY) {
     //enemy image file location
     this.sprite = 'images/enemy-bug.png';
 };
+
+//Inherit render function from gameCharacter
+Enemy.prototype = Object.create(GameCharacter.prototype);
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -111,11 +126,6 @@ Enemy.prototype.update = function (dt) {
     }
 };
 
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function () {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
-
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -130,16 +140,18 @@ const Player = function (x, y, speed) {
 
 };
 
+//Inherit render function from gameCharacter
+Player.prototype = Object.create(GameCharacter.prototype);
+
 /* Player update is a required function for the game engine however
-** my implication does not make use of it. */
-Player.prototype.update = function () {
+** my implication does not make use of it. I have left it here, but commented out,
+** for any future functionality. */
+
+/*Player.prototype.update = function () {
 
 };
+*/
 
-// Draws character image on the game board.
-Player.prototype.render = function () {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
 
 /* Captures user input from arrow keys and moves the character accordingly.
 ** Also checks for illegal moves (ie: character can't move off screen).

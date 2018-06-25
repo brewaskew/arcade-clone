@@ -95,7 +95,11 @@ var Engine = (function (global) {
         allEnemies.forEach(function (enemy) {
             enemy.update(dt);
         });
-        player.update();
+
+        /*  Included in starter code as a required function, for game to render,
+        **  however my update() function does nothing, so I have commented out its
+        **  call.  I have left it in for any possible future functionality. */
+        //player.update();
     }
 
     /* This function initially draws the "game level", it will then call
