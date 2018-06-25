@@ -1,7 +1,6 @@
 //Variables for player character image, 'Lives' icons and Level counter
 let character = "";
 let level = 1;
-let playerLives = 3;
 
 //Variables for accessing modal boxes
 const levelModal = document.querySelector(".modal-level");
@@ -89,16 +88,17 @@ Enemy.prototype.update = function (dt) {
             this.x + 70 > player.x) {
             /* Remove a player life and hide furthest right visible "Lives" icon
             ** on the scoreboard */
-            playerLives -= 1;
-            if (playerLives === 2) {
+            player.livesLeft -= 1;
+            if (player.livesLeft === 2) {
                 ReadyPlayerThree.style.visibility = "hidden";
             }
-            else if (playerLives === 1) {
+            else if (player.livesLeft === 1) {
                 ReadyPlayerTwo.style.visibility = "hidden";
             }
             //Trigger end game modal box
-            else if (playerLives === 0) {
+            else if (player.livesLeft === 0) {
                 ReadyPlayerOne.style.visibility = "hidden";
+                player.sprite = "";
                 replay.addEventListener("click", function () {
                     location.reload();
                 });
@@ -126,6 +126,7 @@ const Player = function (x, y, speed) {
     this.y = y;
     this.speed = speed;
     this.sprite = character;
+    this.livesLeft = 3;
 
 };
 
@@ -168,14 +169,14 @@ Player.prototype.handleInput = function (keyCode) {
         }
     }
 
-    if (player.y === -21) {
+    if (this.y === -21) {
         level += 1;
         levelContent.textContent = "Level " + level;
         const timeout = setTimeout(function () {
             toggleModal(levelModal);
         }, 1500);
-        player.x = 202;
-        player.y = 389;
+        this.x = 202;
+        this.y = 389;
         allEnemies.push(new Enemy(allowedY));
         levelCount.textContent = level;
         toggleModal(levelModal);
@@ -202,6 +203,7 @@ const player = new Player(202, 389, 82);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
+
 document.addEventListener('keyup', function (e) {
     var allowedKeys = {
         37: 'left',
